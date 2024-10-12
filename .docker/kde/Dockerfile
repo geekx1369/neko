@@ -16,6 +16,11 @@ RUN set -eux; apt-get update; \
     rm -rf /var/lib/apt/lists/* /var/cache/apt/*
 
 #
+
+# kde persistent data noob fumble in the dark
+ENV XDG_CONFIG_HOME=/home/neko/.config
+RUN mkdir -p $XDG_CONFIG_HOME
+
 # disable autolock
 RUN kwriteconfig5 --file /home/neko/.config/kscreenlockerrc --group Daemon --key Autolock false; \
     chown neko:neko /home/neko/.config/kscreenlockerrc
